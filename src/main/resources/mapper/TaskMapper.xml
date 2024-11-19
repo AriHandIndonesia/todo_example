@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hand.todo.infra.mapper.TaskMapper">
+<!--    selectTask(Task params)-->
+    <resultMap id="taskMap" type="com.hand.todo.domain.entity.Task">
+        <id column="ID" property="id"/>
+        <result column="EMPLOYEE_ID" property="EmployeeId"/>
+        <result column="STATE" property="state"/>
+        <result column="TASK_NUMBER" property="taskNumber"/>
+        <result column="TASK_DESCRIPTION" property="taskDescription"/>
+        <result column="TENANT_ID" property="tenantId"/>
+        <result column="EMPLOYEE_NAME" property="employeeName"/>
+        <result column="EMPLOYEE_NUMBER" property="employeeNumber"/>
+    </resultMap>
+
+    <select id="selectTask" resultMap="taskMap" parameterType="com.hand.todo.domain.entity.Task">
+        SELECT
+        tt.ID, tt.EMPLOYEE_ID,
+        tt.STATE, tt.TASK_NUMBER,
+        tt.TASK_DESCRIPTION, tt.TENANT_ID,
+        tu.EMPLOYEE_NAME, tu.EMPLOYEE_NUMBER
+        FROM
+        todo_task tt
+        JOIN
+        todo_user tu
+        ON
+        tt.EMPLOYEE_ID = tu.ID
+    </select>
+</mapper>
