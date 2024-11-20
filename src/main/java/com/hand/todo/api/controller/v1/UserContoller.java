@@ -4,6 +4,7 @@ import com.hand.todo.app.service.UserService;
 import com.hand.todo.config.SwaggerTags;
 import com.hand.todo.domain.entity.User;
 import com.hand.todo.domain.repository.UserRepository;
+import org.hzero.boot.message.MessageClient;
 import io.choerodon.core.domain.Page;
 import io.choerodon.core.iam.ResourceLevel;
 import io.choerodon.mybatis.pagehelper.annotation.SortDefault;
@@ -12,6 +13,7 @@ import io.choerodon.mybatis.pagehelper.domain.Sort;
 import io.choerodon.swagger.annotation.Permission;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import org.hzero.boot.message.entity.Receiver;
 import org.hzero.core.base.BaseController;
 import org.hzero.core.util.Results;
 import org.hzero.mybatis.helper.SecurityTokenHelper;
@@ -19,7 +21,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import springfox.documentation.annotations.ApiIgnore;
+
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Api(tags = SwaggerTags.USER)
 @RestController("userController.v1")
@@ -31,6 +36,9 @@ public class UserContoller extends BaseController {
         this.userService = userService;
         this.userRepository = userRepository;
     }
+
+    MessageClient messageClient;
+
     @Permission(level = ResourceLevel.SITE)
     @ApiOperation(value = "分页查询用户")
     @GetMapping

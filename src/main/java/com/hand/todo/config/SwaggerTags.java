@@ -15,6 +15,7 @@ public class SwaggerTags {
     public static final String EXAMPLE = "Example";
     public static final String TASK = "Task";
     public static final String USER = "User";
+    public static final String MESSAGE = "Message";
 
     @Autowired
     public SwaggerTags(Docket docket) {
@@ -23,5 +24,6 @@ public class SwaggerTags {
         );
         docket.tags(new Tag(TASK,"task"));
         docket.tags(new Tag(USER,"user"));
+        docket.tags(new Tag(MESSAGE,"message"));
     }
 }

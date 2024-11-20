@@ -86,6 +86,11 @@
             <artifactId>jackson-dataformat-yaml</artifactId>
         </dependency>
 
+        <dependency>
+            <groupId>org.hzero.boot</groupId>
+            <artifactId>hzero-boot-message</artifactId>
+        </dependency>
+
         <!-- test -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -107,6 +112,8 @@
             <artifactId>cglib-nodep</artifactId>
             <scope>test</scope>
         </dependency>
+
+
 
     </dependencies>
 
