@@ -7,6 +7,7 @@ import com.hand.todo.domain.repository.TaskRepository;
 import com.hand.todo.domain.repository.UserRepository;
 import io.choerodon.core.exception.CommonException;
 import org.apache.commons.collections4.CollectionUtils;
+import org.hzero.mybatis.domian.Condition;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -42,5 +43,17 @@ public class UserServiceImpl implements UserService {
         if (CollectionUtils.isNotEmpty(tasks)) {
             taskRepository.batchDelete(tasks);
         }
+    }
+
+    @Override
+    public User getUserbyId(String employeeNumber) {
+
+        User user = new User();
+        user.setEmployeeNumber(employeeNumber);
+
+//        Condition.Criteria
+//        User result = userRepository.selectOneOptional(user,);
+
+        return userRepository.selectByPrimaryKey(6L);
     }
 }

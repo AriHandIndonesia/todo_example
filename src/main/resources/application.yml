@@ -2,8 +2,9 @@ spring:
   application:
     name: todo-47835
   datasource:
-    url: ${SPRING_DATASOURCE_URL:jdbc:mysql://db.hzero.com.cn:3306/todo_service?useUnicode=true&characterEncoding=utf-8&useSSL=false}
-#    url: ${SPRING_DATASOURCE_URL:jdbc:mysql://localhost:3306/todo_service?allowPublicKeyRetrieval=True&useSSL=false&useUnicode=true&characterEncoding=UTF-8}
+#    url: ${SPRING_DATASOURCE_URL:jdbc:mysql://db.hzero.com.cn:3306/todo_service?useUnicode=true&characterEncoding=utf-8&useSSL=false}
+#    url: ${SPRING_DATASOURCE_URL:jdbc:mysql://172.22.4.113:3306/hzero_train202411?useUnicode=true&characterEncoding=utf-8&useSSL=false}
+    url: ${SPRING_DATASOURCE_URL:jdbc:mysql://localhost:3306/todo_service?allowPublicKeyRetrieval=True&useSSL=false&useUnicode=true&characterEncoding=UTF-8}
     username: ${SPRING_DATASOURCE_USERNAME:hzero}
     password: ${SPRING_DATASOURCE_PASSWORD:hzero}
     hikari:
@@ -13,16 +14,19 @@ spring:
       maximum-pool-size: ${SPRING_DATASOURCE_MAXIMUM_POOL_SIZE:200}
       # 等待连接池分配连接的最大时长（毫秒）
       connection-timeout: ${SPRING_DATASOURCE_CONNECTION_TIMEOUT:30000}
+      #Online
   redis:
-    host: ${SPRING_REDIS_HOST:redis.hzero.com.cn}
+    host: ${SPRING_REDIS_HOST:172.22.4.113}
     port: ${SPRING_REDIS_PORT:6379}
     database: ${SPRING_REDIS_DATABASE:1}
-    password: ${SPRING_REDIS_PASSWORD:}
-#    redis:
-#      host: ${SPRING_REDIS_HOST:172.22.4.113}
-#      port: ${SPRING_REDIS_PORT:6379}
-#      database: ${SPRING_REDIS_DATABASE:1}
-#      password: ${SPRING_REDIS_PASSWORD:hzero@123!}
+    password: ${SPRING_REDIS_PASSWORD:hzero@123!}
+    #Offline
+    #    redis:
+#    host: ${SPRING_REDIS_HOST:redis.hzero.com.cn}
+#    port: ${SPRING_REDIS_PORT:6379}
+#    database: ${SPRING_REDIS_DATABASE:1}
+#    password: ${SPRING_REDIS_PASSWORD:}
+
     jedis:
       pool:
         # 资源池中最大连接数

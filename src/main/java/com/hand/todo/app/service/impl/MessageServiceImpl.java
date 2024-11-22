@@ -1,9 +1,12 @@
 package com.hand.todo.app.service.impl;
 
 import com.hand.todo.app.service.MessageService;
+import com.hand.todo.app.service.UserService;
 import com.hand.todo.domain.entity.EmailRequest;
 import com.hand.todo.domain.entity.MessageRequest;
+import com.hand.todo.domain.entity.User;
 import org.hzero.boot.message.MessageClient;
+import org.hzero.boot.message.entity.FlyBookMsgType;
 import org.hzero.boot.message.entity.Message;
 import org.hzero.boot.message.entity.Receiver;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +22,9 @@ public class MessageServiceImpl implements MessageService {
 
     @Autowired
     MessageClient messageClient;
+
+    @Autowired
+    UserService userService;
 
 //    Integer tenantId =
     private String SENDER = "muhammad.ari@hand-global.com";
@@ -73,6 +79,40 @@ public class MessageServiceImpl implements MessageService {
         );
         //kirim response
         return result.toString();
+    }
+
+    @Override
+    public String sendFeishu(Map<String, String> map) {
+        //receiver
+        Map<String, String> receiverMap = new HashMap<>();
+        receiverMap.put("email",map.get("receiverEmail"));
+        receiverMap.put("EmployeeId",map.get("receiverEmpId"));
+
+        FlyBookMsgType msgType = FlyBookMsgType.TEXT;
+
+        //arg
+        Map<String ,Object> param = new HashMap<>();
+        //get user from db for param in template
+        User user = userService.getUserbyId(map.get("employeeId"));
+        param.put("userName", user.getEmployeeName());
+        param.put("empNumber", user.getEmployeeNumber());
+        param.put("email", user.getEmail());
+
+        String tenantId = map.get("tenantId");
+        Long tenantIdL = Long.parseLong(tenantId);
+        //kirim feishu
+//        Message result = messageClient.sendFlyBook(
+//                tenantIdL,
+//                map.get("serverCode"),
+//                map.get("messageTemplate"),
+//                msgType,
+//                map.get("lang"),
+//                Collections.singletonList(receiverMap),
+//                param
+//                );
+//
+//        return result.toString();
+        return "";
     }
 
     private List<String> checkMessage(List<String> messages){

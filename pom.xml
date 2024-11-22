@@ -113,7 +113,17 @@
             <scope>test</scope>
         </dependency>
 
+<!--        scheduler-->
+        <dependency>
+            <groupId>org.hzero.boot</groupId>
+            <artifactId>hzero-boot-scheduler</artifactId>
+        </dependency>
 
+<!--        file IO-->
+        <dependency>
+            <groupId>org.hzero.boot</groupId>
+            <artifactId>hzero-boot-file</artifactId>
+        </dependency>
 
     </dependencies>
 
