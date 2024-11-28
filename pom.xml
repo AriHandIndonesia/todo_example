@@ -18,6 +18,12 @@
     <version>1.0.0-snapshot</version>
     <name>todo-47835</name>
 
+    <properties>
+        <!-- Set the Java version here -->
+        <maven.compiler.source>1.8</maven.compiler.source>  <!-- Java version for compiling -->
+        <maven.compiler.target>1.8</maven.compiler.target>  <!-- Java version for targeting -->
+    </properties>
+
     <dependencies>
         <!-- hzero starter -->
         <dependency>
@@ -91,6 +97,14 @@
             <artifactId>hzero-boot-message</artifactId>
         </dependency>
 
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.18.26</version>
+            <scope>provided</scope>
+        </dependency>
+
+
         <!-- test -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -123,6 +137,16 @@
         <dependency>
             <groupId>org.hzero.boot</groupId>
             <artifactId>hzero-boot-file</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.hzero.boot</groupId>
+            <artifactId>hzero-boot-import</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.hzero</groupId>
+            <artifactId>hzero-report-saas</artifactId>
         </dependency>
 
     </dependencies>
