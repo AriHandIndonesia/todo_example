@@ -144,9 +144,17 @@
             <artifactId>hzero-boot-import</artifactId>
         </dependency>
 
+<!--        Report-->
         <dependency>
             <groupId>org.hzero</groupId>
             <artifactId>hzero-report-saas</artifactId>
+        </dependency>
+
+<!--        workflow-->
+        <dependency>
+            <groupId>org.hzero.boot</groupId>
+            <artifactId>hzero-boot-workflow</artifactId>
+            <version>1.10.1.RELEASE</version>
         </dependency>
 
     </dependencies>

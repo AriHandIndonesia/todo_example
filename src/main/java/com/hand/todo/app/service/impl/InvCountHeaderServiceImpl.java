@@ -4,6 +4,8 @@ import com.hand.todo.api.dto.WorkInfoDTO;
 import io.choerodon.core.domain.Page;
 import io.choerodon.mybatis.pagehelper.PageHelper;
 import io.choerodon.mybatis.pagehelper.domain.PageRequest;
+import org.hzero.boot.workflow.WorkflowClient;
+import org.hzero.common.HZeroService;
 import org.springframework.beans.factory.annotation.Autowired;
 import com.hand.todo.app.service.InvCountHeaderService;
 import org.springframework.stereotype.Service;
@@ -27,6 +29,10 @@ import java.util.stream.Collectors;
 public class InvCountHeaderServiceImpl implements InvCountHeaderService {
     @Autowired
     private InvCountHeaderRepository invCountHeaderRepository;
+
+    @Autowired
+    private WorkflowClient workflowClient;
+
 
     @Override
     public Page<InvCountHeader> selectList(PageRequest pageRequest, InvCountHeader invCountHeader) {
@@ -59,6 +65,8 @@ public class InvCountHeaderServiceImpl implements InvCountHeaderService {
         }else {
             invCountHeaderRepository.insertSelective(invCountHeader);
         }
+
+//        workflowClient.startInstanceByFlowKey(Long tenantId, String flowKey, String businessKey, String dimension, String starter, Map<String, Object> variableMap);
     }
 }
 
