@@ -1,5 +1,6 @@
 package com.hand.todo.infra.mapper;
 
+import com.hand.todo.api.dto.TaskDTO;
 import com.hand.todo.domain.entity.Task;
 import io.choerodon.mybatis.common.BaseMapper;
 
@@ -13,4 +14,5 @@ public interface TaskMapper extends BaseMapper<Task> {
      * @return Task
      */
     List<Task> selectTask(Task params);
+    List<TaskDTO> getTaskList(TaskDTO taskDTO);
 }

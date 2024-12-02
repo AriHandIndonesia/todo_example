@@ -1,5 +1,6 @@
 package com.hand.todo.api.controller.v1;
 
+import com.hand.todo.api.dto.UserDTO;
 import com.hand.todo.app.service.UserService;
 import com.hand.todo.config.SwaggerTags;
 import com.hand.todo.domain.entity.User;
@@ -7,24 +8,23 @@ import com.hand.todo.domain.repository.UserRepository;
 import org.hzero.boot.message.MessageClient;
 import io.choerodon.core.domain.Page;
 import io.choerodon.core.iam.ResourceLevel;
-import io.choerodon.mybatis.pagehelper.annotation.SortDefault;
 import io.choerodon.mybatis.pagehelper.domain.PageRequest;
-import io.choerodon.mybatis.pagehelper.domain.Sort;
 import io.choerodon.swagger.annotation.Permission;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import org.hzero.boot.message.entity.Receiver;
+import org.hzero.boot.platform.lov.annotation.ProcessLovValue;
+import org.hzero.core.base.BaseConstants;
 import org.hzero.core.base.BaseController;
+import org.hzero.core.cache.ProcessCacheValue;
 import org.hzero.core.util.Results;
+import org.hzero.export.annotation.ExcelExport;
+import org.hzero.export.vo.ExportParam;
 import org.hzero.mybatis.helper.SecurityTokenHelper;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import springfox.documentation.annotations.ApiIgnore;
 
-import java.util.HashMap;
+import javax.servlet.http.HttpServletResponse;
 import java.util.List;
-import java.util.Map;
 
 @Api(tags = SwaggerTags.USER)
 @RestController("userController.v1")
@@ -42,6 +42,7 @@ public class UserContoller extends BaseController {
     @Permission(level = ResourceLevel.SITE)
     @ApiOperation(value = "分页查询用户")
     @GetMapping
+    @ProcessCacheValue
     public ResponseEntity<Page<User>> list(User user, PageRequest pageRequest) {
         return Results.success(userRepository.pageAndSort(pageRequest, user));
     }
@@ -64,4 +65,17 @@ public class UserContoller extends BaseController {
         userService.delete(user.getId());
         return Results.success();
     }
+
+    @Permission(level = ResourceLevel.ORGANIZATION)
+    @ApiOperation(value = "export")
+    @GetMapping("{organizationId}/export")
+    @ExcelExport(value = UserDTO.class)
+    @ProcessLovValue(targetField = BaseConstants.FIELD_BODY)
+    public ResponseEntity<List<UserDTO>> export(UserDTO userDTO,
+                                                ExportParam exportParam,
+                                                HttpServletResponse response,
+                                                @PathVariable String organizationId){
+        return Results.success(userService.exportData(userDTO));
+    }
+
 }

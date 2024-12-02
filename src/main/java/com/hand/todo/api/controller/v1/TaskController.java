@@ -27,7 +27,7 @@ public class TaskController extends BaseController {
         this.taskRepository = taskRepository;
     }
     @Permission(level = ResourceLevel.ORGANIZATION)
-    @ApiOperation(value = "创建task")
+    @ApiOperation(value = "Create task")
     @PostMapping
     public ResponseEntity<Task> create(@PathVariable("organizationId") Long tenantId, @RequestBody Task task){
         task.setTenantId(tenantId);
@@ -35,7 +35,7 @@ public class TaskController extends BaseController {
         return Results.success(taskService.create((task)));
     }
     @Permission(level = ResourceLevel.ORGANIZATION)
-    @ApiOperation(value = "更新task")
+    @ApiOperation(value = "Update task")
     @PutMapping
     public ResponseEntity<Task> update(@PathVariable("organizationId") Long tenantId, @RequestBody Task task) {
         // 简单数据校验
@@ -45,7 +45,7 @@ public class TaskController extends BaseController {
         return Results.success(taskService.update(task));
     }
     @Permission(level = ResourceLevel.ORGANIZATION)
-    @ApiOperation(value = "根据taskNumber查询task")
+    @ApiOperation(value = "get by taskNumber")
 //    @ApiImplicitParams({
 //            @ApiImplicitParam(value = "任务编号", paramType = "string")
 //    })

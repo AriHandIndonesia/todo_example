@@ -36,9 +36,9 @@ public class ExampleController extends BaseController {
 
     @ApiOperation(value = "根据ID获取")
     @Permission(level = ResourceLevel.SITE, permissionLogin = true)
-//    @ApiImplicitParams({
-//            @ApiImplicitParam(name = "id", value = "ID", paramType = "path")
-//    })
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "id", value = "ID", paramType = "path")
+    })
     @GetMapping("/{id}")
     public ResponseEntity<Example> hello(@PathVariable Long id) {
         return Results.success(exampleRepository.selectByPrimaryKey(id));

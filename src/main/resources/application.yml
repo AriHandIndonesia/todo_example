@@ -18,7 +18,7 @@ spring:
   redis:
     host: ${SPRING_REDIS_HOST:172.22.4.113}
     port: ${SPRING_REDIS_PORT:6379}
-    database: ${SPRING_REDIS_DATABASE:1}
+    database: ${SPRING_REDIS_DATABASE:15}
     password: ${SPRING_REDIS_PASSWORD:hzero@123!}
     #Offline
     #    redis:
@@ -105,3 +105,6 @@ logging:
     org.apache.ibatis: debug
     io.choerodon: debug
     org.hzero: debug
+hzero:
+  cache-value:
+    enable: true

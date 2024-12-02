@@ -1,6 +1,9 @@
 package com.hand.todo.app.service;
 
+import com.hand.todo.api.dto.UserDTO;
 import com.hand.todo.domain.entity.User;
+
+import java.util.List;
 
 public interface UserService {
     /**
@@ -18,4 +21,6 @@ public interface UserService {
     void delete(Long userId);
 
     User getUserbyId(String employeeNumber);
+
+    List<UserDTO> exportData(UserDTO userDTO);
 }

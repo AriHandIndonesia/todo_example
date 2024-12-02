@@ -26,4 +26,16 @@
         ON
         tt.EMPLOYEE_ID = tu.ID
     </select>
+    <select id="getTaskList" resultType="com.hand.todo.api.dto.TaskDTO">
+        SELECT *
+        FROM todo_task
+        <where>
+            <if test="empIdList != null and empIdList.size() > 0">
+                EMPLOYEE_ID in
+                <foreach collection="empIdList" open="(" close="*)" item="empId" separator=",">
+                    #{empId}
+                </foreach>
+            </if>
+        </where>
+    </select>
 </mapper>

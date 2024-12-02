@@ -1,8 +1,10 @@
 package com.hand.todo.app.service;
 
+import com.hand.todo.api.dto.TaskDTO;
 import com.hand.todo.domain.entity.Task;
 
 import java.util.List;
+import java.util.stream.Stream;
 
 public interface TaskService {
     /**
@@ -27,4 +29,6 @@ public interface TaskService {
     void deleteByTaskNumber(String taskNumber);
 
     List<Task> selectAllTask(String taskNumber);
+
+    List<TaskDTO> selectList(TaskDTO taskDTO);
 }

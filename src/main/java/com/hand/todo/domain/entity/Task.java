@@ -7,6 +7,7 @@ import io.choerodon.mybatis.domain.AuditDomain;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import org.hibernate.validator.constraints.Length;
+import org.hzero.export.annotation.ExcelColumn;
 
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -29,25 +30,39 @@ public class Task extends AuditDomain {
     @Id
     @GeneratedValue
     private Long id;
+
     @NotNull(message = "用户ID不能为空")
     @ApiModelProperty("用户ID")
     private Long EmployeeId;
+
     @ApiModelProperty("任务状态")
+    @ExcelColumn(en = "State")
     private String state;
+
     @ApiModelProperty("任务编号")
+    @ExcelColumn(en = "Task Number")
     private String taskNumber;
+
     @Length(max = 240)
     @ApiModelProperty("任务描述")
+    @ExcelColumn(en = "Task Description")
     private String taskDescription;
+
     @NotNull
     @ApiModelProperty("租户ID")
     private Long tenantId;
+
     @Transient
     @ApiModelProperty("员工编号")
     private String employeeNumber;
+
     @Transient
     @ApiModelProperty("员工姓名")
     private String employeeName;
+
+    @ApiModelProperty("taskType")
+    @ExcelColumn(en = "Task Type")
+    private String taskType;
 
     /**
      * Generate a task number
@@ -122,5 +137,13 @@ public class Task extends AuditDomain {
 
     public void setEmployeeName(String employeeName) {
         this.employeeName = employeeName;
+    }
+
+    public String getTaskType() {
+        return taskType;
+    }
+
+    public void setTaskType(String taskType) {
+        this.taskType = taskType;
     }
 }

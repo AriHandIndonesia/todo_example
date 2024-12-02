@@ -11,4 +11,8 @@
     <update id="updateUser" parameterType="com.hand.todo.domain.entity.User">
 
     </update>
+    <select id="selectList" resultType="com.hand.todo.api.dto.UserDTO">
+        SELECT *
+        FROM todo_user
+    </select>
 </mapper>
